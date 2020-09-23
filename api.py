@@ -2,6 +2,8 @@ import pandas as pd
 from pymongo import MongoClient
 import json
 import requests
+import os
+import re
 
 def data():
     key = open('key.txt', 'r').read()
@@ -24,7 +26,8 @@ def data():
             d['Volume'] = value['5. volume']
             list_daily.append(d)
 
-        # print(list_daily)
+        # pd.DataFrame(list_daily).to_csv('{}.csv'.format(company), index=False)
+        pd.DataFrame(list_daily).to_json('{}.json'.format(company), orient='records', date_format="iso")
 
         try:
             server = MongoClient('mongodb://localhost:27017/')
@@ -33,20 +36,21 @@ def data():
             print('Could not connect to MongoDB :(')
         
         #To connect MongoDB Atlas to Compass
-        # server = MongoClient('mongodb+srv://<username>:<password>@trading.1j43t.azure.mongodb.net/test')
-        
-        # db = server['trading']
-        # companies = server['companies']
+        # server = MongoClient('mongodb+srv://<username>:<password>@trading.1j43t.azure.mongodb.net/')
 
-        server['trading']['companies'].insert_many(list_daily)
+        # To find a CSV file
+        # csv = re.search(r'{}.csv'.format(company), str(os.listdir()))
+        # df = pd.read_csv(csv.group())
+        
+        # To find a JSON file
+        jsonFile = re.search(r'{}.json'.format(company), str(os.listdir()))
+        with open(jsonFile.group()) as f:
+            data = json.load(f)
+        
+        server['trading'][company].insert_many(data)
         print("Data inserted")
 
         server.close()
         print("Disconnected!")
-        
-        # df = pd.DataFrame(list_daily)
-        # df = df.to_csv('data.csv', date_format="iso", encoding='utf-8')        
-        # df = df.to_json('data.json', date_format="iso", orient="records")
-        # print(df)
 
 data()

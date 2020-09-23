@@ -4,14 +4,9 @@ import matplotlib.pyplot as plt
 from pymongo import MongoClient
 import datetime
 
-from alpha_vantage.timeseries import TimeSeries as alphaSeries
-
 from darts import TimeSeries
 from darts.models import RNNModel
-from darts.preprocessing import ScalerWrapper
 from darts.utils.missing_values import auto_fillna
-
-plt.rcParams["figure.figsize"] = (15,5)
 
 server = MongoClient("localhost", 27017)
 db = server.trading
