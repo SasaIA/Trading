@@ -1,5 +1,6 @@
 pandas
 matplotlib
 pymongo
+pymongo[srv]
 alpha_vantage
 requests

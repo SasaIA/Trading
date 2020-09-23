@@ -7,7 +7,7 @@ def data():
     key = open('key.txt', 'r').read()
     companies = ['IBM', 'AAPL', 'MSFT'] #IBM, Apple, Microsoft
     for company in companies:
-        data = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+company+'&apikey={}'.format(key))
+        data = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+company+'&outputsize=full&apikey={}'.format(key))
         data = data.json()
         
         company = data["Meta Data"]["2. Symbol"]
@@ -32,6 +32,9 @@ def data():
         except:
             print('Could not connect to MongoDB :(')
         
+        #To connect MongoDB Atlas to Compass
+        # server = MongoClient('mongodb+srv://<username>:<password>@trading.1j43t.azure.mongodb.net/test')
+        
         # db = server['trading']
         # companies = server['companies']
 
@@ -40,8 +43,6 @@ def data():
 
         server.close()
         print("Disconnected!")
-        
-        # print(server.list_database_names())
         
         # df = pd.DataFrame(list_daily)
         # df = df.to_csv('data.csv', date_format="iso", encoding='utf-8')        
