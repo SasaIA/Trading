@@ -23,7 +23,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![App Page](appPage.png)
 
 This project aims to predict whether a company's stock price will rise or fall the next day to find out whether we can buy a stock or not. We selected three companies and collected data from 1999 to present.
 
@@ -58,6 +58,10 @@ python get-pip.py
 Now create a folder, open it on an IDE and follow the instructions :
 
 1. Get a free API Key at [Alpha Vantage](https://www.alphavantage.co)
+
+      - Create a file `apiKey.txt` and past your API Key.
+      - Create a file `mongoKey.txt` and past in each line your username, password and the rest of the link of MongoDB Atlas after the '@'.
+
 2. Open terminal and clone the repository
 ```sh
 git clone https://github.com/SasaIA/Trading.git
@@ -69,14 +73,14 @@ pip install -r requirements.txt
 4. Create a file `key.txt` and past you API KEY
 5. Make sure to install MongoDB on your computer
 6. Open the terminal and type :
-```
+```sh
 python api.py
 python lstm.py
 ```
 6. Thats it you have the latest stock price for each company and the prediction for tomorrow.
 7. Every night, launch the `updatesPrice.py` file to update the database with the last stock price.
 8. To launch the app, type in the terminal
-```
+```sh
 streamlit run app.py
  ```
 

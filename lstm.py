@@ -25,9 +25,10 @@ lstCompanies = ['IBM', 'AAPL', 'MSFT']
 
 def lstm():
     for company in lstCompanies:
-        df = pd.DataFrame(list(db.companies.find({ 'Company': company})))
+        df = pd.DataFrame(list(db[company].find({})))
         df = df.drop('_id', axis=1)
-        df = df.sort_values('Date', ignore_index=True)
+        df['Open'] = df['Open'].astype('float')
+        df['Close'] = df['Close'].astype('float')
         series = TimeSeries.from_dataframe(df, 'Date', ['Close'], freq='B', fill_missing_dates=True) # 'B' = Business day
         series = auto_fillna(series)
 
@@ -46,3 +47,5 @@ def lstm():
         model.fit(series)
         lstmPred = model.predict(1).values()[0][0]
         db.prediction.insert_one({ "Date": datetime.datetime.today(), "Company": company, "Prediction": round(float(lstmPred), 2) })
+
+lstm()
