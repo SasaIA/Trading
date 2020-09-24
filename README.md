@@ -3,7 +3,7 @@
   <h3 align="center">Predict whether a company's stock will rise or fall the next day!</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Prediction with LSTM!
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
