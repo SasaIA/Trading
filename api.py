@@ -6,7 +6,7 @@ import os
 import re
 
 def data():
-    key = open('key.txt', 'r').read()
+    key = open('apiKey.txt', 'r').read()
     companies = ['IBM', 'AAPL', 'MSFT'] #IBM, Apple, Microsoft
     for company in companies:
         data = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+company+'&outputsize=full&apikey={}'.format(key))
@@ -29,20 +29,27 @@ def data():
         # pd.DataFrame(list_daily).to_csv('{}.csv'.format(company), index=False)
         pd.DataFrame(list_daily).to_json('{}.json'.format(company), orient='records', date_format="iso")
 
-        try:
-            server = MongoClient('mongodb://localhost:27017/')
-            print('Connected successfully :D')
-        except:
-            print('Could not connect to MongoDB :(')
-        
-        #To connect MongoDB Atlas to Compass
-        # server = MongoClient('mongodb+srv://<username>:<password>@trading.1j43t.azure.mongodb.net/')
+        # ****Connect to MongoDB Atlas****
+        key = open('mongoKey.txt', 'r').readlines()
+        username = key[0].rstrip()
+        psswd = key[1].rstrip()
+        link = key[2].rstrip()
+        accessDB = 'mongodb+srv://{}:{}@{}'.format(username, psswd, link)
+        server = MongoClient(accessDB)
+        db = server.trading
 
-        # To find a CSV file
+        # ****Connect to MongoDB with localhost****
+        # try:
+            # server = MongoClient('mongodb://localhost:27017/')
+            # print('Connected successfully :D')
+        # except:
+        #     print('Could not connect to MongoDB :(')
+        
+        # ****To find a CSV file****
         # csv = re.search(r'{}.csv'.format(company), str(os.listdir()))
         # df = pd.read_csv(csv.group())
         
-        # To find a JSON file
+        # ****To find a JSON file****
         jsonFile = re.search(r'{}.json'.format(company), str(os.listdir()))
         with open(jsonFile.group()) as f:
             data = json.load(f)

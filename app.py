@@ -4,7 +4,16 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-server = MongoClient("localhost", 27017)
+# ****Connect to MongoDB with localhost****
+# server = MongoClient("localhost", 27017)
+
+# ****Connect to MongoDB Atlas****
+key = open('mongoKey.txt', 'r').readlines()
+username = key[0].rstrip()
+psswd = key[1].rstrip()
+link = key[2].rstrip()
+accessDB = 'mongodb+srv://{}:{}@{}'.format(username, psswd, link)
+server = MongoClient(accessDB)
 db = server.trading
 
 lstCompanies = ['IBM', 'MSFT', 'AAPL']
@@ -35,7 +44,7 @@ def loadData():
 
                 st.write('Hover your mouse over the graph to view the stock price for each day.')
                 st.write('You can use the functionalities of the graph to zoom.')
-                # Plotly
+                
                 plotOpen = px.line(df, x='Date', y='Open', title="Open Stock Price since 99'", hover_data={"Date": "|%B %d, %Y"})
                 plotClose = px.line(df, x='Date', y='Close', title="Close Stock Price since 99'", hover_data={"Date": "|%B %d, %Y"})
                 st.plotly_chart(plotOpen)
@@ -44,5 +53,5 @@ def loadData():
     elif st.sidebar.checkbox("LSTM"):
         st.title('LSTM')
         st.subheader('We are going to predict the stock price with LSTM network')
-        
+
 loadData()
