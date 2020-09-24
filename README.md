@@ -73,13 +73,13 @@ python api.py
 python lstm.py
 ```
 6. Thats it you have the latest stock price for each company and the prediction for tomorrow.
-7. Every morning, launch the `updatesPrice.py` file to update the database with the last stock price.
+7. Every night, launch the `updatesPrice.py` file to update the database with the last stock price.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 There are different files in this project:
 - The first `api.py` allows to retrieve the data via the API and to store the data in a JSON file and then to send them to a database.
-- The second `lstm.py` predicts whether the stock will rise or fall.
+- The second `lstm.py` predicts whether the stock will rise or fall the next day.
 - The third `updatesPrice.py`, allows us to update our database with the last known stock price.
 - The fourth `dataviz.ipynb` allows you to analyze data with different graphs.
