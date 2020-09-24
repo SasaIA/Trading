@@ -1,6 +1,13 @@
+Cython==0.29.17
+setuptools==49.6.0
+statsmodels==0.11.1
+fbprophet
 pandas
+numpy
 matplotlib
+plotly
 pymongo
 pymongo[srv]
 alpha_vantage
 requests
+u8darts

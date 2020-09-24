@@ -36,6 +36,7 @@ We coded this project using Python, its packages and an API :
 * [Pandas](https://pandas.pydata.org/)
 * [Numpy](https://numpy.org/)
 * [Matplotlib](https://matplotlib.org/)
+* [Plotly](https://plotly.com/python/)
 * [Alpha Vantage](https://www.alphavantage.co/)
 * [MongoDB](https://docs.mongodb.com/)
 

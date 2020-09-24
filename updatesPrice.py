@@ -22,7 +22,7 @@ def updatePrice():
         data, meta_data = ts.get_daily(symbol=company)
         historic = data.reset_index()
         lastHistoric = historic['date'].iloc[0]
-        if lastHistoric != yesterday:
+        if lastHistoric != db[company].find({ 'Date': datetime.datetime.timedelta(day=1) }):
             db[company].insert_one( { "Company" : company , "Date" : historic.iloc[0][0].strftime("%Y-%m-%d"), "Open": historic.iloc[0][1], "High": historic.iloc[0][2], "Low": historic.iloc[0][3], "Close": historic.iloc[0][4], "Volume": historic.iloc[0][5] })
 
 updatePrice()
