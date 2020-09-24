@@ -8,10 +8,18 @@ from darts import TimeSeries
 from darts.models import RNNModel
 from darts.utils.missing_values import auto_fillna
 
-server = MongoClient("localhost", 27017)
+# ****Connect to MongoDB with localhost****
+# server = MongoClient("localhost", 27017)
+# db = server.trading
+
+# ****Connect to MongoDB Atlas****
+key = open('mongoKey.txt', 'r').readlines()
+username = key[0].rstrip()
+psswd = key[1].rstrip()
+link = key[2].rstrip()
+accessDB = 'mongodb+srv://{}:{}@{}'.format(username, psswd, link)
+server = MongoClient(accessDB)
 db = server.trading
-companies = db.companies
-prediction = db.predictions
 
 lstCompanies = ['IBM', 'AAPL', 'MSFT']
 
@@ -37,4 +45,4 @@ def lstm():
 
         model.fit(series)
         lstmPred = model.predict(1).values()[0][0]
-        prediction.insert_one({ "Date": datetime.datetime.today(), "Company": company, "Prediction": round(float(lstmPred), 2) })
+        db.prediction.insert_one({ "Date": datetime.datetime.today(), "Company": company, "Prediction": round(float(lstmPred), 2) })
