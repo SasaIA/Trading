@@ -25,7 +25,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-This project aims to predict whether the stock of a company will increase or decrease the next day to know if we can buy a stock or not. We have selected three companies.
+This project aims to predict whether a company's stock price will rise or fall the next day to find out whether we can buy a stock or not. We selected three companies and collected data from 1999 to present.
 
 ### Built With
 We coded this project using Python, its packages and an API :
