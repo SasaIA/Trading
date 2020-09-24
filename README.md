@@ -74,6 +74,10 @@ python lstm.py
 ```
 6. Thats it you have the latest stock price for each company and the prediction for tomorrow.
 7. Every night, launch the `updatesPrice.py` file to update the database with the last stock price.
+8. To launch the app, type in the terminal
+```
+streamlit run app.py
+ ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -83,3 +87,4 @@ There are different files in this project:
 - The second `lstm.py` predicts whether the stock will rise or fall the next day.
 - The third `updatesPrice.py`, allows us to update our database with the last known stock price.
 - The fourth `dataviz.ipynb` allows you to analyze data with different graphs.
+- The fifth `app.py` file is used to launch the application and have a visual on the latest stock prices, to have an overview of the graphs and predictions.
