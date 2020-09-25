@@ -28,7 +28,7 @@
 This project aims to predict whether a company's stock price will rise or fall the next day to find out whether we can buy a stock or not. We selected three companies and collected data from 1999 to present.
 
 ### Built With
-We coded this project using Python, its packages and an API :
+We coded this project using Python, its packages, a Database and an API :
 
 * [Python](https://www.python.org)
 * [Pymongo](https://pymongo.readthedocs.io/en/stable/)
@@ -70,16 +70,15 @@ git clone https://github.com/SasaIA/Trading.git
 ```sh
 pip install -r requirements.txt
 ```
-4. Create a file `key.txt` and past you API KEY
-5. Make sure to install MongoDB on your computer
-6. Open the terminal and type :
+4. Make sure to install MongoDB on your computer
+5. Open the terminal and type :
 ```sh
 python api.py
 python lstm.py
 ```
-6. Thats it you have the latest stock price for each company and the prediction for tomorrow.
-7. Every night, launch the `updatesPrice.py` file to update the database with the last stock price.
-8. To launch the app, type in the terminal
+5. Thats it you have the latest stock price for each company and the prediction for tomorrow.
+6. Every night, launch the `updatesPrice.py` file to update the database with the last stock price.
+7. To launch the app, type in the terminal
 ```sh
 streamlit run app.py
  ```
