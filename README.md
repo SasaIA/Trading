@@ -71,6 +71,7 @@ git clone https://github.com/SasaIA/Trading.git
 pip install -r requirements.txt
 ```
 4. Make sure to install MongoDB on your computer
+5. To launch a file, you must start the terminal and navigate to the folder that contains that file
 5. Open the terminal and type :
 ```sh
 python api.py

@@ -28,7 +28,7 @@ def data():
 
         # pd.DataFrame(list_daily).to_csv('{}.csv'.format(company), index=False)
         pd.DataFrame(list_daily).to_json('{}.json'.format(company), orient='records', date_format="iso")
-
+        
         # ****Connect to MongoDB Atlas****
         key = open('../mongoKey.txt', 'r').readlines()
         username = key[0].rstrip()
@@ -36,12 +36,11 @@ def data():
         link = key[2].rstrip()
         accessDB = 'mongodb+srv://{}:{}@{}'.format(username, psswd, link)
         server = MongoClient(accessDB)
-        db = server.trading
 
         # ****Connect to MongoDB with localhost****
         # try:
-            # server = MongoClient('mongodb://localhost:27017/')
-            # print('Connected successfully :D')
+        #     server = MongoClient('mongodb://localhost:27017/')
+        #     print('Connected successfully :D')
         # except:
         #     print('Could not connect to MongoDB :(')
         
