@@ -59,8 +59,8 @@ Now create a folder, open it on an IDE and follow the instructions :
 
 1. Get a free API Key at [Alpha Vantage](https://www.alphavantage.co)
 
-      - Create a file `apiKey.txt` and past your API Key.
-      - Create a file `mongoKey.txt` and past in each line your username, password and the rest of the link of MongoDB Atlas after the '@'.
+      - Create an `apiKey.txt` file in the root of the Trading folder and put your API key there.
+      - To connect to MongoDB Atlas: Create a `mongoKey.txt` file at the root of the Trading folder and put in each line your username, password and the rest of the MongoDB Atlas link after the '@'.
 
 2. Open terminal and clone the repository
 ```sh
